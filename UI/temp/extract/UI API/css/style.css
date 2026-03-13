@@ -1,16 +1,16 @@
 :root {
-  --bg-primary: #f8fafc;
+  --bg-primary: #f1f5f9;
   --bg-secondary: #ffffff;
-  --border-color: #cbd5e1;
+  --border-color: #e2e8f0;
   --text-primary: #0f172a;
   --text-secondary: #475569;
   --accent-primary: #2563eb;
   --accent-secondary: #3b82f6;
-  --hero-bg: rgba(240,244,248,0.9);
-  --navbar-bg: rgba(240,244,248,0.95);
-  --cloud-color: rgba(100,116,139,0.25);
+  --hero-bg: rgba(241,245,249,0.9);
+  --navbar-bg: rgba(255,255,255,0.95);
+  --cloud-color: rgba(100,116,139,0.2);
   --card-radius: 12px;
-  --shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+  --shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
 }
 body.dark-mode {
   --bg-primary: #0f172a;
@@ -64,11 +64,29 @@ h1, h2, h3, h4, h5, h6 {
 .navbar-custom .btn-outline-light {
   border-color: var(--border-color);
   color: var(--text-primary);
+  border-width: 1px;
+  transition: all 0.2s;
+  background-color: transparent;
 }
 .navbar-custom .btn-outline-light:hover {
   background-color: var(--accent-primary);
   border-color: var(--accent-primary);
   color: white;
+}
+body.dark-mode .navbar-custom .btn-outline-light {
+  border-color: var(--text-secondary);
+  color: var(--text-primary);
+}
+body.dark-mode .navbar-custom .btn-outline-light:hover {
+  background-color: var(--accent-primary);
+  border-color: var(--accent-primary);
+  color: white;
+}
+.navbar-custom .btn-outline-light i {
+  font-size: 1.1rem;
+}
+.navbar-custom.scrolled {
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 .hero {
   background-color: var(--hero-bg);
