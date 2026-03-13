@@ -68,6 +68,7 @@ if (document.getElementById('stats-container')) {
 }
 const themeToggle = document.getElementById('themeToggle');
 const navbar = document.querySelector('.navbar-custom');
+const navbarCollapse = document.querySelector('.navbar-collapse');
 if (themeToggle && navbar) {
   const savedTheme = localStorage.getItem('theme') || 'light';
   document.body.classList.toggle('dark-mode', savedTheme === 'dark');
@@ -90,6 +91,18 @@ if (themeToggle && navbar) {
       navbar.classList.add('navbar-light');
       navbar.classList.remove('navbar-dark');
     }
+    if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+      navbarCollapse.classList.remove('show');
+    }
+  });
+}
+if (navbarCollapse) {
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      if (navbarCollapse.classList.contains('show')) {
+        navbarCollapse.classList.remove('show');
+      }
+    });
   });
 }
 window.addEventListener('scroll', () => {
