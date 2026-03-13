@@ -76,13 +76,13 @@ if (document.getElementById('stats-container')) {
 
 const themeToggle = document.getElementById('themeToggle');
 if (themeToggle) {
-  const currentTheme = localStorage.getItem('theme') || 'dark';
-  document.body.classList.toggle('light-mode', currentTheme === 'light');
+  const currentTheme = localStorage.getItem('theme') || 'light';
+  document.body.classList.toggle('dark-mode', currentTheme === 'dark');
   themeToggle.innerHTML = currentTheme === 'light' ? '<i class="bi bi-moon-fill"></i>' : '<i class="bi bi-sun-fill"></i>';
   themeToggle.addEventListener('click', () => {
-    document.body.classList.toggle('light-mode');
-    const isLight = document.body.classList.contains('light-mode');
-    localStorage.setItem('theme', isLight ? 'light' : 'dark');
-    themeToggle.innerHTML = isLight ? '<i class="bi bi-moon-fill"></i>' : '<i class="bi bi-sun-fill"></i>';
+    document.body.classList.toggle('dark-mode');
+    const isDark = document.body.classList.contains('dark-mode');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    themeToggle.innerHTML = isDark ? '<i class="bi bi-sun-fill"></i>' : '<i class="bi bi-moon-fill"></i>';
   });
 }
