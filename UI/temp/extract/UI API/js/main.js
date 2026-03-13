@@ -75,14 +75,32 @@ if (document.getElementById('stats-container')) {
 }
 
 const themeToggle = document.getElementById('themeToggle');
-if (themeToggle) {
-  const currentTheme = localStorage.getItem('theme') || 'light';
-  document.body.classList.toggle('dark-mode', currentTheme === 'dark');
-  themeToggle.innerHTML = currentTheme === 'light' ? '<i class="bi bi-moon-fill"></i>' : '<i class="bi bi-sun-fill"></i>';
+const navbar = document.querySelector('.navbar-custom');
+
+if (themeToggle && navbar) {
+  const savedTheme = localStorage.getItem('theme') || 'light';
+  document.body.classList.toggle('dark-mode', savedTheme === 'dark');
+  themeToggle.innerHTML = savedTheme === 'light' ? '<i class="bi bi-moon-fill"></i>' : '<i class="bi bi-sun-fill"></i>';
+  
+  if (savedTheme === 'dark') {
+    navbar.classList.add('navbar-dark');
+    navbar.classList.remove('navbar-light');
+  } else {
+    navbar.classList.add('navbar-light');
+    navbar.classList.remove('navbar-dark');
+  }
+  
   themeToggle.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-    const isDark = document.body.classList.contains('dark-mode');
+    const isDark = document.body.classList.toggle('dark-mode');
     localStorage.setItem('theme', isDark ? 'dark' : 'light');
     themeToggle.innerHTML = isDark ? '<i class="bi bi-sun-fill"></i>' : '<i class="bi bi-moon-fill"></i>';
+    
+    if (isDark) {
+      navbar.classList.add('navbar-dark');
+      navbar.classList.remove('navbar-light');
+    } else {
+      navbar.classList.add('navbar-light');
+      navbar.classList.remove('navbar-dark');
+    }
   });
 }
