@@ -1,5 +1,8 @@
 const baseUrl = 'https://api.levvicode.cloud';
 
+let stats = { totalRequests:0, uptimeDays:0, uptimeHours:0, uptimeMinutes:0, cpuCores:0 };
+let latency = 0;
+
 async function fetchStats() {
   try {
     const res = await fetch(baseUrl + '/stats?_=' + Date.now());
@@ -59,10 +62,8 @@ function renderStats() {
   `;
 }
 
-let stats = { totalRequests:0, uptimeDays:0, uptimeHours:0, uptimeMinutes:0, cpuCores:0 };
-let latency = 0;
-
 if (document.getElementById('stats-container')) {
+  renderStats();
   fetchStats();
   fetchCategoryStats();
   measureLatency();
