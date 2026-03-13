@@ -2,6 +2,7 @@
   "rewrites": [
     { "source": "/categories", "destination": "/category.html" },
     { "source": "/category/:name", "destination": "/category.html" },
+    { "source": "/contact", "destination": "/contact.html" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
