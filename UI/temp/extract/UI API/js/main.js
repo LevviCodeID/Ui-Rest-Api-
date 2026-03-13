@@ -1,8 +1,6 @@
 const baseUrl = 'https://api.levvicode.cloud';
-
 let stats = { totalRequests:0, uptimeDays:0, uptimeHours:0, uptimeMinutes:0, cpuCores:0 };
 let latency = 0;
-
 async function fetchStats() {
   try {
     const res = await fetch(baseUrl + '/stats?_=' + Date.now());
@@ -19,7 +17,6 @@ async function fetchStats() {
     }
   } catch (err) { console.error(err); }
 }
-
 async function fetchCategoryStats() {
   try {
     const res = await fetch(baseUrl + '/stats/categories?_=' + Date.now());
@@ -30,7 +27,6 @@ async function fetchCategoryStats() {
     }
   } catch (err) { console.error(err); }
 }
-
 async function measureLatency() {
   const start = Date.now();
   try {
@@ -39,7 +35,6 @@ async function measureLatency() {
   } catch { latency = 'N/A'; }
   updateDisplay();
 }
-
 function updateDisplay() {
   const reqEl = document.getElementById('totalRequests');
   if (reqEl) reqEl.innerText = stats.totalRequests;
@@ -50,7 +45,6 @@ function updateDisplay() {
   const latEl = document.getElementById('latency');
   if (latEl) latEl.innerText = latency !== 'N/A' ? latency + ' ms' : 'N/A';
 }
-
 function renderStats() {
   const container = document.getElementById('stats-container');
   if (!container) return;
@@ -61,7 +55,6 @@ function renderStats() {
     <div class="stats-card"><i class="bi bi-cpu icon"></i><h3>CPU Cores</h3><div class="value" id="cpuCores">${stats.cpuCores}</div></div>
   `;
 }
-
 if (document.getElementById('stats-container')) {
   renderStats();
   fetchStats();
@@ -73,15 +66,12 @@ if (document.getElementById('stats-container')) {
     measureLatency();
   }, 3000);
 }
-
 const themeToggle = document.getElementById('themeToggle');
 const navbar = document.querySelector('.navbar-custom');
-
 if (themeToggle && navbar) {
   const savedTheme = localStorage.getItem('theme') || 'light';
   document.body.classList.toggle('dark-mode', savedTheme === 'dark');
   themeToggle.innerHTML = savedTheme === 'light' ? '<i class="bi bi-moon-fill"></i>' : '<i class="bi bi-sun-fill"></i>';
-  
   if (savedTheme === 'dark') {
     navbar.classList.add('navbar-dark');
     navbar.classList.remove('navbar-light');
@@ -89,12 +79,10 @@ if (themeToggle && navbar) {
     navbar.classList.add('navbar-light');
     navbar.classList.remove('navbar-dark');
   }
-  
   themeToggle.addEventListener('click', () => {
     const isDark = document.body.classList.toggle('dark-mode');
     localStorage.setItem('theme', isDark ? 'dark' : 'light');
     themeToggle.innerHTML = isDark ? '<i class="bi bi-sun-fill"></i>' : '<i class="bi bi-moon-fill"></i>';
-    
     if (isDark) {
       navbar.classList.add('navbar-dark');
       navbar.classList.remove('navbar-light');
@@ -104,3 +92,12 @@ if (themeToggle && navbar) {
     }
   });
 }
+window.addEventListener('scroll', () => {
+  if (navbar) {
+    if (window.scrollY > 50) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  }
+});
