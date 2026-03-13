@@ -91,17 +91,15 @@ if (themeToggle && navbar) {
       navbar.classList.add('navbar-light');
       navbar.classList.remove('navbar-dark');
     }
-    if (navbarCollapse && navbarCollapse.classList.contains('show')) {
-      navbarCollapse.classList.remove('show');
-    }
+    const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
+    if (bsCollapse) bsCollapse.hide();
   });
 }
 if (navbarCollapse) {
   document.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', () => {
-      if (navbarCollapse.classList.contains('show')) {
-        navbarCollapse.classList.remove('show');
-      }
+      const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
+      if (bsCollapse) bsCollapse.hide();
     });
   });
 }
