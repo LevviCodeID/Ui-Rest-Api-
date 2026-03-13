@@ -1,0 +1,7 @@
+{
+  "rewrites": [
+    { "source": "/categories", "destination": "/category.html" },
+    { "source": "/category/:name", "destination": "/category.html" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
