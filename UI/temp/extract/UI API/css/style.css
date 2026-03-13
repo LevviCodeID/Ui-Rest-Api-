@@ -43,7 +43,6 @@ body {
 }
 .content-wrapper {
   flex: 1 0 auto;
-  padding-top: 70px;
 }
 h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
@@ -54,20 +53,10 @@ h1, h2, h3, h4, h5, h6 {
   top: 0;
   width: 100%;
   z-index: 1030;
-  transition: background-color 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease;
   background-color: transparent;
-  backdrop-filter: none;
-  box-shadow: none;
-}
-.navbar-custom.scrolled {
-  background-color: rgba(30, 41, 59, 0.8);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-body.light-mode .navbar-custom.scrolled {
-  background-color: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  border-bottom: none;
+  padding: 0.75rem 1rem;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 .navbar-custom .navbar-brand,
 .navbar-custom .nav-link {
@@ -101,15 +90,15 @@ body.dark-mode .navbar-custom .btn-outline-light:hover {
 .navbar-custom .btn-outline-light i {
   font-size: 1.1rem;
 }
-@media (min-width: 992px) {
-  .navbar-custom .navbar-collapse {
-    flex-grow: 0;
-  }
+.navbar-custom.scrolled {
+  background-color: var(--navbar-bg);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 .hero {
   background-color: var(--hero-bg);
   color: var(--text-primary);
-  padding: 5rem 1rem;
+  padding: calc(70px + 3rem) 1rem 5rem 1rem;
   margin-bottom: 3rem;
   border-bottom: 1px solid var(--border-color);
   text-align: center;
@@ -326,7 +315,6 @@ body.dark-mode .navbar-custom .btn-outline-light:hover {
   text-align: center;
   color: var(--text-secondary);
 }
-.footer a { text-decoration: none; }
 .modal-dialog { max-width: 95vw; margin: 1rem auto; }
 @media (min-width: 768px) { .modal-dialog { max-width: 80vw; } }
 @media (min-width: 1200px) { .modal-dialog { max-width: 70vw; } }
@@ -360,7 +348,10 @@ body.dark-mode .navbar-custom .btn-outline-light:hover {
   border: 1px solid var(--border-color);
   border-radius: var(--card-radius);
 }
-@keyframes loading { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+@keyframes loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
 .skeleton-stats-card { height: 120px; }
 .skeleton-category-card { height: 180px; }
 .skeleton-endpoint-card { height: 300px; }
@@ -397,4 +388,7 @@ body.dark-mode .form-control::placeholder {
   .category-card p { font-size: 0.8rem; }
   .hero h1 { font-size: 2.2rem; }
   .hero p { font-size: 1rem; }
+  .hero {
+    padding: calc(70px + 2rem) 1rem 3rem 1rem;
+  }
 }
