@@ -22,8 +22,10 @@ async function fetchCategoryStats() {
     const res = await fetch(baseUrl + '/stats/categories?_=' + Date.now());
     const data = await res.json();
     if (data.status) {
-      document.getElementById('totalCategories').innerText = data.totalCategories;
-      document.getElementById('totalEndpoints').innerText = data.totalEndpoints;
+      const totalCat = document.getElementById('totalCategories');
+      const totalEnd = document.getElementById('totalEndpoints');
+      if (totalCat) totalCat.innerText = data.totalCategories;
+      if (totalEnd) totalEnd.innerText = data.totalEndpoints;
     }
   } catch (err) { console.error(err); }
 }
@@ -55,8 +57,29 @@ function renderStats() {
     <div class="stats-card"><i class="bi bi-cpu icon"></i><h3>CPU Cores</h3><div class="value" id="cpuCores">${stats.cpuCores}</div></div>
   `;
 }
+function renderCategoryStats() {
+  const container = document.getElementById('category-stats-container');
+  if (!container) return;
+  container.innerHTML = `
+    <div class="col-md-6">
+      <div class="card text-center p-4">
+        <i class="bi bi-folder2-open fs-1" style="color: var(--accent-primary);"></i>
+        <h2 class="h2" id="totalCategories">0</h2>
+        <p class="text-secondary">Total Categories</p>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card text-center p-4">
+        <i class="bi bi-hdd-stack fs-1" style="color: var(--accent-primary);"></i>
+        <h2 class="h2" id="totalEndpoints">0</h2>
+        <p class="text-secondary">Total Endpoints</p>
+      </div>
+    </div>
+  `;
+}
 if (document.getElementById('stats-container')) {
   renderStats();
+  renderCategoryStats();
   fetchStats();
   fetchCategoryStats();
   measureLatency();
