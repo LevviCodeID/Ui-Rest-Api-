@@ -4,15 +4,41 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LevviCode API</title>
+
+  <!-- SEO -->
+  <meta name="description" content="LevviCode API - High performance public API for modern applications. Fast, reliable, and free without API key.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="LevviCode API">
+  <meta property="og:description" content="High-performance public API for modern applications. Lightning fast and free — no API key required.">
+  <meta property="og:image" content="https://files.catbox.moe/dgc6yq.jpg">
+  <meta property="og:url" content="https://files.catbox.moe/dgc6yq.jpg">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="LevviCode API">
+  <meta name="twitter:description" content="High performance public API for modern apps. Fast and reliable.">
+  <meta name="twitter:image" content="https://files.catbox.moe/dgc6yq.jpg">
+
+  <!-- Icon -->
+  <link rel="icon" type="image/png" href="/images/logo.png">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .cursor { animation: blink 1s infinite; }
+    @keyframes blink { 0%,50% { opacity:1; } 51%,100% { opacity:0; } }
+  </style>
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+  <nav class="navbar navbar-expand-lg navbar-custom fixed-top fw-bold">
     <div class="container">
-      <a class="navbar-brand" href="/">LevviCode API</a>
+      <a class="navbar-brand d-flex align-items-center fw-bold" href="/">
+  <img src="/images/logo.png" alt="logo" width="45" height="45" class="me-1">
+  Rest Api
+</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -62,8 +88,8 @@
         </div>
       </div>
       <div class="container text-center">
-        <h1>LevviCode API</h1>
-        <p class="lead">Public API untuk bot WhatsApp dan aplikasi lainnya. Gratis, tanpa API key.</p>
+        <h1><span id="typed-text"></span><span class="cursor">|</span></h1>
+        <p class="lead">High-performance public API for modern applications. Lightning fast, reliable, and free — no API key required.</p>
         <a href="#stats-section" class="btn-primary" onclick="document.getElementById('stats-section').scrollIntoView({behavior: 'smooth'}); return false;">
           <i class="bi bi-grid"></i> Get Started
         </a>
@@ -189,5 +215,38 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
   <script src="/js/main.js"></script>
+  <script>
+    const typedText = document.getElementById('typed-text');
+    const words = ['LevviCode API', 'Public API', 'Fast & Reliable'];
+    let wordIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+
+    function type() {
+      const currentWord = words[wordIndex];
+      if (isDeleting) {
+        typedText.textContent = currentWord.substring(0, charIndex - 1);
+        charIndex--;
+      } else {
+        typedText.textContent = currentWord.substring(0, charIndex + 1);
+        charIndex++;
+      }
+
+      if (!isDeleting && charIndex === currentWord.length) {
+        isDeleting = true;
+        setTimeout(type, 1500);
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        wordIndex = (wordIndex + 1) % words.length;
+        setTimeout(type, 500);
+      } else {
+        setTimeout(type, 100);
+      }
+    }
+
+    if (typedText) {
+      type();
+    }
+  </script>
 </body>
 </html>
