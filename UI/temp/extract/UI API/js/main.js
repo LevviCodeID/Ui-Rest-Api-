@@ -1,6 +1,14 @@
 const baseUrl = 'https://api.levvicode.cloud';
 let stats = { totalRequests:0, uptimeDays:0, uptimeHours:0, uptimeMinutes:0, cpuCores:0 };
 let latency = 0;
+
+function getLatencyLabel(ms) {
+  if (ms === 'N/A') return 'N/A';
+  if (ms < 200) return 'Sangat Baik';
+  if (ms < 500) return 'Baik';
+  return 'Buruk';
+}
+
 async function fetchStats() {
   try {
     const res = await fetch(baseUrl + '/stats?_=' + Date.now());
@@ -17,6 +25,7 @@ async function fetchStats() {
     }
   } catch (err) { console.error(err); }
 }
+
 async function fetchCategoryStats() {
   try {
     const res = await fetch(baseUrl + '/stats/categories?_=' + Date.now());
@@ -29,14 +38,18 @@ async function fetchCategoryStats() {
     }
   } catch (err) { console.error(err); }
 }
+
 async function measureLatency() {
   const start = Date.now();
   try {
-    await fetch(baseUrl + '/ping?_=' + Date.now());
+    await fetch(baseUrl + '/ping?_=' + Date.now(), { method: 'HEAD' });
     latency = Date.now() - start;
-  } catch { latency = 'N/A'; }
+  } catch {
+    latency = 'N/A';
+  }
   updateDisplay();
 }
+
 function updateDisplay() {
   const reqEl = document.getElementById('totalRequests');
   if (reqEl) reqEl.innerText = stats.totalRequests;
@@ -45,18 +58,20 @@ function updateDisplay() {
   const cpuEl = document.getElementById('cpuCores');
   if (cpuEl) cpuEl.innerText = stats.cpuCores;
   const latEl = document.getElementById('latency');
-  if (latEl) latEl.innerText = latency !== 'N/A' ? latency + ' ms' : 'N/A';
+  if (latEl) latEl.innerText = latency !== 'N/A' ? getLatencyLabel(latency) : 'N/A';
 }
+
 function renderStats() {
   const container = document.getElementById('stats-container');
   if (!container) return;
   container.innerHTML = `
     <div class="stats-card"><i class="bi bi-hdd-stack icon"></i><h3>Total Requests</h3><div class="value" id="totalRequests">${stats.totalRequests}</div></div>
     <div class="stats-card"><i class="bi bi-clock-history icon"></i><h3>Uptime</h3><div class="value" id="uptime">${stats.uptimeDays}d ${stats.uptimeHours}h ${stats.uptimeMinutes}m</div></div>
-    <div class="stats-card"><i class="bi bi-wifi icon"></i><h3>Latency</h3><div class="value" id="latency">0 ms</div></div>
+    <div class="stats-card"><i class="bi bi-wifi icon"></i><h3>Ping</h3><div class="value" id="latency">0 ms</div></div>
     <div class="stats-card"><i class="bi bi-cpu icon"></i><h3>CPU Cores</h3><div class="value" id="cpuCores">${stats.cpuCores}</div></div>
   `;
 }
+
 function renderCategoryStats() {
   const container = document.getElementById('category-stats-container');
   if (!container) return;
@@ -77,18 +92,22 @@ function renderCategoryStats() {
     </div>
   `;
 }
+
 if (document.getElementById('stats-container')) {
   renderStats();
   renderCategoryStats();
   fetchStats();
   fetchCategoryStats();
   measureLatency();
+
   setInterval(() => {
     fetchStats();
     fetchCategoryStats();
-    measureLatency();
   }, 10000);
+
+  setInterval(measureLatency, 60000);
 }
+
 const themeToggle = document.getElementById('themeToggle');
 const navbar = document.querySelector('.navbar-custom');
 const navbarCollapse = document.querySelector('.navbar-collapse');
