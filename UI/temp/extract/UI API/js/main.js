@@ -5,7 +5,7 @@ let latency = 0;
 function getLatencyLabel(ms) {
   if (ms === 'N/A') return 'N/A';
   if (ms < 200) return 'Sangat Baik';
-  if (ms < 500) return 'Baik';
+  if (ms < 900) return 'Baik';
   return 'Buruk';
 }
 
