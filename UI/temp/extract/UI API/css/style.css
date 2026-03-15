@@ -301,6 +301,16 @@ body.dark-mode .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   transform: translateY(-6px);
   box-shadow: 0 12px 24px rgba(0,0,0,0.1);
 }
+.endpoint-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.endpoint-header h5 {
+  flex: 1;
+  margin: 0;
+}
 .method-badge {
   display: inline-block;
   padding: 0.25rem 0.75rem;
@@ -317,6 +327,81 @@ body.dark-mode .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   border-radius: var(--card-radius);
   padding: 1rem;
   margin-top: 1rem;
+}
+.try-btn {
+  background: transparent;
+  border: 1px solid var(--accent-primary);
+  color: var(--accent-primary);
+  border-radius: 20px;
+  padding: 0.2rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.try-btn:hover {
+  background-color: var(--accent-primary);
+  color: white;
+}
+.section-icon {
+  color: var(--accent-secondary);
+  margin-right: 0.5rem;
+}
+.status-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.5rem;
+}
+.status-table td {
+  padding: 0.25rem 0.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+.status-table td:first-child {
+  width: 80px;
+}
+.status-code {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+.status-code i {
+  font-size: 1rem;
+}
+.code-200 i { color: #4ade80; }
+.code-400 i { color: #f87171; }
+.code-405 i { color: #fbbf24; }
+.code-429 i { color: #fb923c; }
+.code-500 i { color: #ef4444; }
+.param-item {
+  margin-bottom: 0.5rem;
+}
+.param-item code {
+  color: var(--accent-primary);
+  background: transparent;
+}
+.try-form-content {
+  margin-top: 1rem;
+}
+.btn-search {
+  background-color: var(--accent-primary);
+  border-color: var(--accent-primary);
+  color: white;
+  font-weight: 500;
+}
+.btn-search:hover {
+  background-color: var(--accent-secondary);
+  border-color: var(--accent-secondary);
+}
+body.dark-mode .btn-search {
+  background-color: var(--accent-primary);
+  border-color: var(--accent-primary);
+}
+body.dark-mode .btn-search:hover {
+  background-color: var(--accent-secondary);
+  border-color: var(--accent-secondary);
 }
 .form-control {
   background-color: var(--bg-primary);
