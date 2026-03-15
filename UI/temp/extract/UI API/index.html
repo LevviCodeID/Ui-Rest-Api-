@@ -3,30 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LevviCode REST API - Free Public API for Developers</title>
-
-  <!-- SEO -->
-<meta name="description" content="LevviCode REST API is a fast and free public API for developers. Provides downloader API, search API, and tools for bots and modern applications.">
-
-  <!-- Open Graph -->
+  <title>LevviCode REST API - Free Public API for Developers</title>
+  <meta name="description" content="LevviCode REST API is a fast and free public API for developers. Provides downloader API, search API, and tools for bots and modern applications.">
   <meta property="og:title" content="LevviCode REST API">
   <meta property="og:description" content="High-performance public API for modern applications. Lightning fast and free — no API key required.">
   <meta name="keywords" content="rest api, public api, free api, downloader api, bot api, levvicode rest api">
   <meta property="og:image" content="https://restapi.levvicode.cloud/images/logo2.png">
   <meta property="og:url" content="https://restapi.levvicode.cloud">
   <meta property="og:type" content="website">
-
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="LevviCode API">
   <meta name="twitter:description" content="High performance public API for modern apps. Fast and reliable.">
   <meta name="twitter:image" content="/images/logo2.png">
-
-  <!-- Icon -->
   <link rel="icon" type="image/png" href="/images/logo.png">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
   <link rel="stylesheet" href="/css/style.css">
   <style>
     .cursor { animation: blink 1s infinite; }
@@ -115,10 +108,10 @@
 
       <section class="mb-5">
         <h2 class="text-center mb-4">Quick Start</h2>
-        <div class="card">
-          <pre style="background: #0f172a; color: #e6edf3; padding: 1rem; border-radius: 8px; overflow-x: auto;"><code><span style="color: #79c0ff;">const</span> axios = <span style="color: #79c0ff;">require</span>(<span style="color: #a5d6ff;">'axios'</span>);
-(<span style="color: #79c0ff;">async</span> () => {
-  <span style="color: #79c0ff;">const</span> response = <span style="color: #79c0ff;">await</span> axios.get('<span class="base-url-placeholder">https://api.levvicode.cloud</span>/search/tiktok?q=example');
+        <div class="card quick-start-card">
+          <pre><code class="language-javascript">const axios = require('axios');
+(async () => {
+  const response = await axios.get('https://api.levvicode.cloud/search/tiktok?q=example');
   console.log(response.data);
 })();</code></pre>
         </div>
@@ -202,6 +195,8 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
   <script src="/js/main.js"></script>
   <script>
     const typedText = document.getElementById('typed-text');
