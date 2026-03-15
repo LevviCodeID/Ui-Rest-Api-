@@ -390,6 +390,7 @@ body.dark-mode .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   border-color: var(--accent-primary);
   color: white;
   font-weight: 500;
+  padding: 0.5rem 1.5rem;
 }
 .btn-search:hover {
   background-color: var(--accent-secondary);
