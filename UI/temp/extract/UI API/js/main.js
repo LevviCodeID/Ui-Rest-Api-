@@ -87,7 +87,7 @@ if (document.getElementById('stats-container')) {
     fetchStats();
     fetchCategoryStats();
     measureLatency();
-  }, 3000);
+  }, 10000);
 }
 const themeToggle = document.getElementById('themeToggle');
 const navbar = document.querySelector('.navbar-custom');
