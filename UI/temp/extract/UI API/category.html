@@ -144,10 +144,24 @@
         const catData = await catRes.json();
         if (catData.status) {
           const container = document.getElementById('categories-container');
-          const iconList = ['bi-globe','bi-download','bi-search','bi-tools','bi-camera','bi-music-note','bi-film','bi-file-earmark-text','bi-image','bi-code-slash','bi-hdd-stack','bi-wifi','bi-shield-check','bi-star','bi-heart','bi-bell','bi-calendar','bi-chat'];
+          const fallbackIcons = ['bi-globe','bi-download','bi-search','bi-tools','bi-camera','bi-music-note','bi-film','bi-file-earmark-text','bi-image','bi-code-slash','bi-hdd-stack','bi-wifi','bi-shield-check','bi-star','bi-heart','bi-bell','bi-calendar','bi-chat'];
+          const iconMap = {
+            'ai': 'bi-cpu',
+            'downloader': 'bi-download',
+            'maker': 'bi-tools',
+            'search': 'bi-search',
+            'tools': 'bi-gear',
+            'bot': 'bi-robot',
+            'image': 'bi-image',
+            'video': 'bi-film',
+            'audio': 'bi-music-note',
+            'text': 'bi-file-text',
+            'utility': 'bi-wrench'
+          };
           let html = '';
           catData.categories.forEach((cat, i) => {
-            html += `<div class="col-md-4 col-sm-6"><div class="category-card" onclick="window.location.href='/category/${encodeURIComponent(cat.name)}'"><i class="bi ${iconList[i%iconList.length]} icon"></i><h3>${cat.name}</h3><p>${cat.count} endpoints</p></div></div>`;
+            const iconClass = iconMap[cat.name.toLowerCase()] || fallbackIcons[i % fallbackIcons.length];
+            html += `<div class="col-md-4 col-sm-6"><div class="category-card" onclick="window.location.href='/category/${encodeURIComponent(cat.name)}'"><i class="bi ${iconClass} icon"></i><h3>${cat.name}</h3><p>${cat.count} endpoints</p></div></div>`;
           });
           container.innerHTML = html;
         }
