@@ -191,26 +191,12 @@
           } else {
             formHtml = Object.keys(ep.parameters).map(k => `<div class="mb-2"><label class="form-label">${k}</label><input type="text" class="form-control" id="input-${ep.path}-${k}" placeholder="${ep.parameters[k]}"></div>`).join('') + `<button class="btn-primary w-100 mt-2" onclick="tryEndpoint('${ep.path}', 'POST', {${Object.keys(ep.parameters).map(k => `'${k}': document.getElementById('input-${ep.path}-${k}').value`).join(',')}})"><i class="bi bi-send"></i> Try POST</button>`;
           }
-          html += `<div class="col-12"><div class="card endpoint-card"><div class="endpoint-header"><h5 class="text-break">${ep.path}</h5><span class="method-badge method-${ep.method}">${ep.method}</span></div><p class="text-secondary mb-3">${ep.description}</p><button class="try-btn" type="button" data-bs-toggle="collapse" data-bs-target="#${formId}" aria-expanded="false"><i class="bi bi-play-fill"></i> TRY IT OUT</button><div class="collapse try-form-content" id="${formId}"><div class="try-form"><h6><i class="bi bi-sliders2 section-icon"></i> Parameters</h6>${params||'<p class="text-muted">No parameters</p>'}${formHtml}</div></div><div class="mt-3"><button class="btn-outline w-100" type="button" data-bs-toggle="collapse" data-bs-target="#status-${idx}" aria-expanded="false"><i class="bi bi-list-ul section-icon"></i> HTTP STATUS CODES</button><div class="collapse mt-2" id="status-${idx}"><table class="status-table">嗷
-<td><div class="status-code code-200"><i class="bi bi-check-circle-fill"></i> 200</div></td>
-<td>OK - Request successfull</td>
-</tr>
-<tr>
-<td><div class="status-code code-400"><i class="bi bi-exclamation-circle-fill"></i> 400</div></td>
-<td>Bad Request - Invalid parameters or missing required fields</td>
-</tr>
-<tr>
-<td><div class="status-code code-405"><i class="bi bi-ban"></i> 405</div></td>
-<td>Method Not Allowed - HTTP method not supported</td>
-</tr>
-<tr>
-<td><div class="status-code code-429"><i class="bi bi-hourglass-split"></i> 429</div></td>
-<td>Too Many Requests - Rate limit exceeded</td>
-</tr>
-<tr>
-<td><div class="status-code code-500"><i class="bi bi-bug-fill"></i> 500</div></td>
-<td>Internal Server Error - Server encountered an error</td>
-</tr>
+          html += `<div class="col-12"><div class="card endpoint-card"><div class="endpoint-header"><h5 class="text-break">${ep.path}</h5><span class="method-badge method-${ep.method}">${ep.method}</span></div><p class="text-secondary mb-3">${ep.description}</p><button class="try-btn" type="button" data-bs-toggle="collapse" data-bs-target="#${formId}" aria-expanded="false"><i class="bi bi-play-fill"></i> TRY IT OUT</button><div class="collapse try-form-content" id="${formId}"><div class="try-form"><h6><i class="bi bi-sliders2 section-icon"></i> Parameters</h6>${params||'<p class="text-muted">No parameters</p>'}${formHtml}</div></div><div class="mt-3"><button class="btn-outline w-100" type="button" data-bs-toggle="collapse" data-bs-target="#status-${idx}" aria-expanded="false"><i class="bi bi-list-ul section-icon"></i> HTTP STATUS CODES</button><div class="collapse mt-2" id="status-${idx}"><table class="status-table">
+  <tr><td><div class="status-code code-200"><i class="bi bi-check-circle-fill"></i> 200</div></td><td>OK - Request successfull</td></tr>
+  <tr><td><div class="status-code code-400"><i class="bi bi-exclamation-circle-fill"></i> 400</div></td><td>Bad Request - Invalid parameters or missing required fields</td></tr>
+  <tr><td><div class="status-code code-405"><i class="bi bi-ban"></i> 405</div></td><td>Method Not Allowed - HTTP method not supported</td></tr>
+  <tr><td><div class="status-code code-429"><i class="bi bi-hourglass-split"></i> 429</div></td><td>Too Many Requests - Rate limit exceeded</td></tr>
+  <tr><td><div class="status-code code-500"><i class="bi bi-bug-fill"></i> 500</div></td><td>Internal Server Error - Server encountered an error</td></tr>
 </table></div></div></div></div>`;
         });
         container.innerHTML = html;
